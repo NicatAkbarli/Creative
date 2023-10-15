@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebUI.Data;
 using WebUI.Models;
-using WebUI.WiewModels;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers;
 
@@ -18,15 +18,14 @@ public class HomeController : Controller
     {
          var banner = _context.Banners.FirstOrDefault();
         var services = _context.Services.Take(3).ToList();
-        var portfolio = _context.Banners.FirstOrDefault();
+        var portfolio = _context.Portfolios.FirstOrDefault();
         
 
         HomeVM homeVM1 = new()
         {
             Banner = banner,
             Portfolio= portfolio,
-
-            Services = services,
+            Service = services
         };
        
         return View();
