@@ -9,8 +9,8 @@ namespace WebUI.ViewModels
 {
     public class HomeVM
     {
-        public required Banner Banner { get; set; }
-        public required List<Service> Service { get; set; }
-        public required Portfolio Portfolio { get; set; }
+        public Banner Banner { get; set; }
+        public  List<Service> Service { get; set; }
+        public  List<Portfolio> Portfolio { get; set; }
 }
     }

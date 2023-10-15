@@ -10,25 +10,26 @@ public class HomeController : Controller
 {
      private readonly ILogger<HomeController> _logger;
     private readonly  AppDbContext _context ;
-    public HomeController(AppDbContext context)
+    public HomeController(AppDbContext context, ILogger<HomeController> logger = null)
     {
-       _context = context;
+        _context = context;
+        _logger = logger;
     }
     public IActionResult Index()
     {
          var banner = _context.Banners.FirstOrDefault();
         var services = _context.Services.Take(3).ToList();
-        var portfolio = _context.Portfolios.FirstOrDefault();
+        var portfolio = _context.Portfolios.ToList();
         
 
-        HomeVM homeVM1 = new()
+        HomeVM homeVM = new()
         {
             Banner = banner,
             Portfolio= portfolio,
             Service = services
         };
        
-        return View();
+        return View(homeVM);
     }
 
     public IActionResult Privacy()
