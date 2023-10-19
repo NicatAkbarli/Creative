@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebUI.Data;
 using WebUI.Models;
 using WebUI.ViewModels;
@@ -17,9 +18,10 @@ public class HomeController : Controller
     }
     public IActionResult Index()
     {
-         var banner = _context.Banners.FirstOrDefault();
+         var banner = _context.Banners.ToList();
         var services = _context.Services.Take(3).ToList();
-        var portfolio = _context.Portfolios.ToList();
+        var portfolio = _context.Portfolios.Take(6).ToList();
+        
         
 
         HomeVM homeVM = new()

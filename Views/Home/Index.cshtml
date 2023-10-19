@@ -3,15 +3,19 @@
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                    @foreach(var bas in Model.Banner){
+                        
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
+                        <h1 class="text-white font-weight-bold">@bas.Title</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+                        <p class="text-white-75 mb-5">@bas.SubTitle</p>
                         <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
+                    }
                 </div>
+                    
             </div>
         </header>
         <!-- About-->
@@ -30,15 +34,15 @@
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">At Your Service</h2>
+                <h2 class="text-center mt-0">For You:</h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5">
                     @foreach(var tre in Model.Service){
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2"></h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <div class="mb-2"><i class="@tre.Icon fs-1 text-primary"></i></div>
+                            <h3 class="h4 mb-2">@tre.Title</h3>
+                            <p class="text-muted mb-0">@tre.Description</p>
                         </div>
                     </div>
                     }
@@ -49,13 +53,13 @@
         <div id="portfolio">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    @foreach(var portfolio in Model.Portfolio){
+                    @foreach(var prtfolio in Model.Portfolio){
                         <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="..." />
+                        <a class="portfolio-box" href="@prtfolio.PhotoUrl" title="@prtfolio.Title">
+                            <img class="img-fluid" src="@prtfolio.PhotoUrl" alt="..." />
                             <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50"></div>
-                                <div class="project-name">Project Name</div>
+                                <div class="project-category text-white-50">@prtfolio.Category</div>
+                                <div class="project-name">@prtfolio.ProjectName</div>
                             </div>
                         </a>
                     </div>

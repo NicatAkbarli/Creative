@@ -11,7 +11,7 @@ using WebUI.Data;
 namespace WebUI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231014180544_mig_1")]
+    [Migration("20231017214114_mig_1")]
     partial class mig_1
     {
         /// <inheritdoc />
@@ -70,6 +70,23 @@ namespace WebUI.Migrations
                     b.ToTable("Banners");
                 });
 
+            modelBuilder.Entity("WebUI.Models.Categry", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categries");
+                });
+
             modelBuilder.Entity("WebUI.Models.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -91,6 +108,12 @@ namespace WebUI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MyProperty")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhotoUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -104,6 +127,8 @@ namespace WebUI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Portfolios");
                 });
@@ -131,6 +156,17 @@ namespace WebUI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("WebUI.Models.Portfolio", b =>
+                {
+                    b.HasOne("WebUI.Models.Categry", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

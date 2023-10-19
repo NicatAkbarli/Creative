@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebUI.Models
 {
-    public class Banner
+    public class Categry
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string SubTitle { get; set; }
+        public string CategoryName { get; set; }
     }
 }
